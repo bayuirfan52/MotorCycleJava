@@ -5,4 +5,6 @@ Program ini dibuat menggunakan bahasa Java. Menggunakan Java Swing untuk GUI dan
 
 ### NOTICE
 
-Program ini masih terdapat bug dimana terkadang anda akan menemui RPM di bawah 0 atau minus.
+Program ini masih terdapat bug dimana terkadang anda akan menemui RPM di bawah 0 atau minus. Program masih belum mendukung pengoperasian dengan menggunakan keyboard.
+
+#### I Hope you enjoy it! :-)
