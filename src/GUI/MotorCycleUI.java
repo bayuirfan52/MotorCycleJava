@@ -58,7 +58,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                 if(motorCycle.getGear() == "1" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 25){
                     try{
                         tmpSpeed = tmpSpeed + 3;
-                        tmpRPM = tmpRPM + 250;
+                        tmpRPM = tmpRPM + 750;
                         Thread.sleep(50);
                         System.out.println("gas gigi 1");
                     }catch(Exception e){
@@ -137,7 +137,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         System.out.println("if release ke 1 Exception");
                         this.stop();                        
                     }
-               }
+               }               
                else if(tmpRPM > 50 && motorCycle.getGear() == "N"){
                    try{
                         tmpRPM = tmpRPM - 800;
@@ -149,19 +149,37 @@ public class MotorCycleUI extends javax.swing.JFrame{
                     }
                }
                else{
-                   try{
-                        tmpRPM = 50;
-                        tmpSpeed = 0;
-                        System.out.println("else release");
-                        motorCycle.setSpeed(tmpSpeed);
-                        motorCycle.setRPM(tmpRPM);
-                        SpeedLabel.setText(String.valueOf(motorCycle.getSpeed()));
-                        RPMLabel.setText(String.valueOf(motorCycle.getRPM())); 
-                        this.stop();
-                   }catch(Exception e){
-                       this.stop();
+                   if(tmpRPM <= 50 && tmpSpeed != 0){                       
+                            tmpRPM = 50;
+                       try{
+                           Thread.sleep(500);
+                           tmpSpeed--;
+                           System.out.println("else release speed to 0");                           
+                           motorCycle.setSpeed(tmpSpeed);
+                           motorCycle.setRPM(tmpRPM);
+                           SpeedLabel.setText(String.valueOf(motorCycle.getSpeed()));
+                           RPMLabel.setText(String.valueOf(motorCycle.getRPM()));                           
+                       }catch(Exception e){
+                           this.stop();
+                       }
+                   }
+                   
+                   else{
+                        try{
+                             tmpRPM = 50;
+                             tmpSpeed = 0;
+                             System.out.println("else release");
+                             motorCycle.setSpeed(tmpSpeed);
+                             motorCycle.setRPM(tmpRPM);
+                             SpeedLabel.setText(String.valueOf(motorCycle.getSpeed()));
+                             RPMLabel.setText(String.valueOf(motorCycle.getRPM())); 
+                             this.stop();
+                        }catch(Exception e){
+                            this.stop();
+                        }
                    }
                }
+                   
                 motorCycle.setSpeed(tmpSpeed);
                 motorCycle.setRPM(tmpRPM);
                 SpeedLabel.setText(String.valueOf(motorCycle.getSpeed()));
@@ -183,20 +201,32 @@ public class MotorCycleUI extends javax.swing.JFrame{
                     System.out.println("Brake Stopped or Cannot Activate because speed is 0");
                     this.stop();
                 }
-                
-                try{
-                    tmpRPM = tmpRPM - 800;
-                    tmpSpeed = tmpSpeed - 4;
-                    Thread.sleep(200);
-                    System.out.println("Brake Pressed");
-                }catch(Exception e){
-                    System.out.println("Brake Exception");
-                    this.stop();                        
+                else if(tmpRPM <= 50 && tmpSpeed != 0){
+                    tmpRPM = 50;
+                    try{
+                        tmpSpeed = tmpSpeed - 4;
+                        Thread.sleep(200);
+                        System.out.println("Brake Pressed Conditioning");
+                    }catch(Exception e){
+                        System.out.println("Brake Exception");
+                        this.stop();                        
+                    }
                 }
-                motorCycle.setSpeed(tmpSpeed);
-                motorCycle.setRPM(tmpRPM);
-                SpeedLabel.setText(String.valueOf(motorCycle.getSpeed()));
-                RPMLabel.setText(String.valueOf(motorCycle.getRPM()));
+                else{
+                    try{
+                        tmpRPM = tmpRPM - 800;
+                        tmpSpeed = tmpSpeed - 4;
+                        Thread.sleep(200);
+                        System.out.println("Brake Pressed Normalize");
+                    }catch(Exception e){
+                        System.out.println("Brake Exception");
+                        this.stop();                        
+                    }
+                    motorCycle.setSpeed(tmpSpeed);
+                    motorCycle.setRPM(tmpRPM);
+                    SpeedLabel.setText(String.valueOf(motorCycle.getSpeed()));
+                    RPMLabel.setText(String.valueOf(motorCycle.getRPM()));
+                }
             }
         }
     };
