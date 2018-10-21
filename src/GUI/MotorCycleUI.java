@@ -48,7 +48,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         this.stop();                        
                     }
                 }
-                if(motorCycle.getGear() == "1" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 25){
+                else if(motorCycle.getGear() == "1" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 25){
                     try{
                         tmpSpeed = tmpSpeed + 3;
                         tmpRPM = tmpRPM + 750;
@@ -59,7 +59,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         this.stop();                        
                     }
                 }
-                if(motorCycle.getGear() == "2" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 42){
+                else if(motorCycle.getGear() == "2" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 42){
                     try{
                         tmpSpeed = tmpSpeed + 2;
                         tmpRPM = tmpRPM + 550;
@@ -70,7 +70,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         this.stop();                        
                     }
                 }
-                if(motorCycle.getGear() == "3" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 63){
+                else if(motorCycle.getGear() == "3" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 63){
                     try{
                         tmpSpeed = tmpSpeed + 1;
                         tmpRPM = tmpRPM + 150;
