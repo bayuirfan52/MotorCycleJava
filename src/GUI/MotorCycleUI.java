@@ -5,8 +5,6 @@
  */
 package GUI;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 /**
@@ -19,15 +17,12 @@ public class MotorCycleUI extends javax.swing.JFrame{
      */
     public MotorCycleUI() {
         initComponents();
-        maxRPMval = 10800;
         isEnabled = false;
         tmpRPM = 0;
         tmpSpeed = 0;
     }
     
     MotorCycle motorCycle = new MotorCycle();
-    private final int maxRPMval;
-    private int maxSpeedval;
     private int tmpRPM;
     private int tmpSpeed;
     private boolean isEnabled;
