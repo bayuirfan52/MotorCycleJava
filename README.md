@@ -3,6 +3,8 @@
 
 Program ini dibuat menggunakan bahasa Java. Menggunakan Java Swing untuk GUI dan Thread, MouseEvent dalam penerapan programnya. Silakan dipelajari dan apabila ada yang bingung bisa ditanyakan ke pembuat project.
 
+## Hasil Build Aplikasi : MotorCycle.jar
+
 ### NOTICE
 
 Program ini belum support tombol Keyboard
@@ -10,3 +12,5 @@ Program ini belum support tombol Keyboard
 ### UPDATE
 
 Perbaikan pada minus RPM saat Throttle Release dan Brake Pressed
+
+#### I Hope you enjoy it! :-)
