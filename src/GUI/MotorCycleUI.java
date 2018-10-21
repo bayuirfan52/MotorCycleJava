@@ -36,7 +36,6 @@ public class MotorCycleUI extends javax.swing.JFrame{
     Thread brakeSystem;
     
     class THROTTLEThread extends Thread{
-        int maxSpeedval = 40;
         public void run(){
             while(true){                
                 if(motorCycle.getGear() == "N" && motorCycle.getRPM() < 10800){
@@ -53,7 +52,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                     try{
                         tmpSpeed = tmpSpeed + 3;
                         tmpRPM = tmpRPM + 750;
-                        Thread.sleep(50);
+                        Thread.sleep(250);
                         System.out.println("gas gigi 1");
                     }catch(Exception e){
                         System.out.println("gas gigi 1 Exception");
@@ -120,6 +119,9 @@ public class MotorCycleUI extends javax.swing.JFrame{
                    try{
                         tmpSpeed = tmpSpeed - 1;
                         tmpRPM = tmpRPM - 800;
+                        if(tmpRPM <= 50){
+                            tmpRPM = 50;
+                        }
                         Thread.sleep(500);
                         System.out.println("if release ke 1");
                     }catch(Exception e){
@@ -141,7 +143,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                     }
                }
                else{
-                   if(tmpRPM <= 50 && tmpSpeed != 0){                       
+                   if(tmpRPM <= 50 && tmpSpeed >= 0){                       
                             tmpRPM = 50;
                        try{
                            Thread.sleep(500);
