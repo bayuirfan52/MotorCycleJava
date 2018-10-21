@@ -20,7 +20,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
     public MotorCycleUI() {
         initComponents();
         maxRPMval = 10800;
-        isPressed = false;
+        isEnabled = false;
         tmpRPM = 0;
         tmpSpeed = 0;
     }
@@ -30,7 +30,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
     private int maxSpeedval;
     private int tmpRPM;
     private int tmpSpeed;
-    private boolean isPressed;
+    private boolean isEnabled;
     Thread speedUp;
     Thread speedRelease;
     Thread brakeSystem;
@@ -38,16 +38,10 @@ public class MotorCycleUI extends javax.swing.JFrame{
     class THROTTLEThread extends Thread{
         int maxSpeedval = 40;
         public void run(){
-            while(true){
-                
-                if(isInterrupted()){
-                    System.out.println("interrupt");
-                    break;
-                }
-                
+            while(true){                
                 if(motorCycle.getGear() == "N" && motorCycle.getRPM() < 10800){
                     try {
-                        tmpRPM = tmpRPM + 1250;
+                        tmpRPM = tmpRPM + 650;
                         Thread.sleep(50);
                         System.out.println("gas gigi N");
                     } catch (Exception ex) {
@@ -121,12 +115,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
     
     class ReleasedThread extends Thread{
        public void run(){
-           while(true){
-                if(isInterrupted()){
-                    System.out.println("gas release interrupt");
-                    break;
-                }
-                
+           while(true){                
                if(tmpSpeed > 0 && tmpRPM > 50 && motorCycle.getGear() != "N"){
                    try{
                         tmpSpeed = tmpSpeed - 1;
@@ -141,6 +130,9 @@ public class MotorCycleUI extends javax.swing.JFrame{
                else if(tmpRPM > 50 && motorCycle.getGear() == "N"){
                    try{
                         tmpRPM = tmpRPM - 800;
+                        if(tmpRPM <= 50){
+                            tmpRPM = 50;
+                        }
                         Thread.sleep(50);
                         System.out.println("if release ke 2");
                     }catch(Exception e){
@@ -191,12 +183,6 @@ public class MotorCycleUI extends javax.swing.JFrame{
     class BrakePressed extends Thread{
         public void run(){
             while(true){
-                if(isInterrupted()){
-                    System.out.println("Brake Interrupted");
-                    break;
-                }
-                
-                
                 if(tmpSpeed == 0){
                     System.out.println("Brake Stopped or Cannot Activate because speed is 0");
                     this.stop();
@@ -214,7 +200,10 @@ public class MotorCycleUI extends javax.swing.JFrame{
                 }
                 else{
                     try{
-                        tmpRPM = tmpRPM - 800;
+                        tmpRPM = tmpRPM - 400;
+                        if(tmpRPM <= 50){
+                            tmpRPM = 50;
+                        }
                         tmpSpeed = tmpSpeed - 4;
                         Thread.sleep(200);
                         System.out.println("Brake Pressed Normalize");
@@ -519,6 +508,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
     private void STARTUPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_STARTUPActionPerformed
         // TODO add your handling code here:
         if(motorCycle.getEngineStatus() == false){
+            isEnabled = true;
             motorCycle.setEngineStatus(true);
             THROTTLE.setEnabled(true);
             BRAKE.setEnabled(true);
@@ -530,6 +520,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
             System.out.println("Engine start");
         }
         else{
+            isEnabled = false;
             motorCycle.setEngineStatus(false);
             motorCycle.setGear("N");
             motorCycle.setRPM(50);
@@ -541,9 +532,9 @@ public class MotorCycleUI extends javax.swing.JFrame{
             SpeedLabel.setText("-");
             RPMLabel.setText("-");
             GearPosLabel.setText("-");
-            speedUp.destroy();
-            speedRelease.destroy();
-            brakeSystem.destroy();
+            speedUp.stop();
+            speedRelease.stop();
+            brakeSystem.stop();
             System.out.println("Engine stop");
         }
     }//GEN-LAST:event_STARTUPActionPerformed
@@ -574,33 +565,39 @@ public class MotorCycleUI extends javax.swing.JFrame{
     }//GEN-LAST:event_GEARUPActionPerformed
 
     private void THROTTLEMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_THROTTLEMousePressed
-        speedUp = new THROTTLEThread();
-        if(speedRelease != null){
-            speedRelease.stop();
-        }
-        speedUp.start();     
+        if(isEnabled){            
+            speedUp = new THROTTLEThread();
+            if(speedRelease != null){
+                speedRelease.stop();
+            }
+            speedUp.start(); 
+        }    
     }//GEN-LAST:event_THROTTLEMousePressed
 
     private void THROTTLEMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_THROTTLEMouseReleased
-        speedRelease = new ReleasedThread();
-        if(speedUp != null){
-            speedUp.stop();            
-            speedRelease.start();
-        }
-        else{
-            speedRelease.stop();
-        }
+        if(isEnabled){
+            speedRelease = new ReleasedThread();
+            if(speedUp != null){
+                speedUp.stop();            
+                speedRelease.start();
+            }
+            else{
+                speedRelease.stop();
+            }
+        }        
     }//GEN-LAST:event_THROTTLEMouseReleased
 
     private void BRAKEMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BRAKEMousePressed
         // TODO add your handling code here:
-        brakeSystem = new BrakePressed();
-        brakeSystem.start();
+        if(isEnabled){
+            brakeSystem = new BrakePressed();
+            brakeSystem.start();
+        }        
     }//GEN-LAST:event_BRAKEMousePressed
 
     private void BRAKEMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BRAKEMouseReleased
         // TODO add your handling code here:
-        brakeSystem.stop();
+        if(isEnabled)brakeSystem.stop();
     }//GEN-LAST:event_BRAKEMouseReleased
 
     /**

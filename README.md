@@ -5,4 +5,8 @@ Program ini dibuat menggunakan bahasa Java. Menggunakan Java Swing untuk GUI dan
 
 ### NOTICE
 
-Program ini masih terdapat bug dimana terkadang anda akan menemui RPM di bawah 0 atau minus.
+Program ini belum support tombol Keyboard
+
+### UPDATE
+
+Perbaikan pada minus RPM saat Throttle Release dan Brake Pressed
