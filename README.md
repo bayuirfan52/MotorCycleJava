@@ -11,6 +11,6 @@ Aplikasi ini belum support pengoperasian dengan menggunakan Keyboard sebagai inp
 
 ## UPDATE
 
-Peningkatan performa dan Perbaikan bug RPM melebihi batas (10800 RPM)
+Peningkatan performa dan Perbaikan bug RPM melebihi batas (10800 RPM).
 
 ### I hope you enjoy this simple program! :-)
