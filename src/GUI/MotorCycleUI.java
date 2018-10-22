@@ -20,9 +20,11 @@ public class MotorCycleUI extends javax.swing.JFrame{
         isEnabled = false;
         tmpRPM = 0;
         tmpSpeed = 0;
+        maxRPM = 10800;
     }
     
     MotorCycle motorCycle = new MotorCycle();
+    private int maxRPM;
     private int tmpRPM;
     private int tmpSpeed;
     private boolean isEnabled;
@@ -33,9 +35,12 @@ public class MotorCycleUI extends javax.swing.JFrame{
     class THROTTLEThread extends Thread{
         public void run(){
             while(true){                
-                if(motorCycle.getGear() == "N" && motorCycle.getRPM() < 10800){
+                if(motorCycle.getGear() == "N" && motorCycle.getRPM() < maxRPM){
                     try {
                         tmpRPM = tmpRPM + 650;
+                        
+                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        
                         Thread.sleep(50);
                         System.out.println("gas gigi N");
                     } catch (Exception ex) {
@@ -43,10 +48,14 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         this.stop();                        
                     }
                 }
-                else if(motorCycle.getGear() == "1" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 25){
+                else if(motorCycle.getGear() == "1" && motorCycle.getRPM() < maxRPM && motorCycle.getSpeed() <= 25){
                     try{
                         tmpSpeed = tmpSpeed + 3;
                         tmpRPM = tmpRPM + 750;
+                        
+                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+
+                        
                         Thread.sleep(250);
                         System.out.println("gas gigi 1");
                     }catch(Exception e){
@@ -54,10 +63,13 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         this.stop();                        
                     }
                 }
-                else if(motorCycle.getGear() == "2" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 42){
+                else if(motorCycle.getGear() == "2" && motorCycle.getRPM() < maxRPM && motorCycle.getSpeed() <= 42){
                     try{
                         tmpSpeed = tmpSpeed + 2;
                         tmpRPM = tmpRPM + 550;
+                        
+                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        
                         Thread.sleep(250);
                         System.out.println("gas gigi 2");
                     }catch(Exception e){
@@ -65,10 +77,13 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         this.stop();                        
                     }
                 }
-                else if(motorCycle.getGear() == "3" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 63){
+                else if(motorCycle.getGear() == "3" && motorCycle.getRPM() < maxRPM && motorCycle.getSpeed() <= 63){
                     try{
                         tmpSpeed = tmpSpeed + 1;
                         tmpRPM = tmpRPM + 150;
+                        
+                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        
                         Thread.sleep(400);
                         System.out.println("gas gigi 3");
                     }catch(Exception e){
@@ -76,10 +91,13 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         this.stop();                        
                     }
                 }
-                else if(motorCycle.getGear() == "4" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 85){
+                else if(motorCycle.getGear() == "4" && motorCycle.getRPM() < maxRPM && motorCycle.getSpeed() <= 85){
                     try{
                         tmpSpeed = tmpSpeed + 1;
                         tmpRPM = tmpRPM + 150;
+                        
+                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        
                         Thread.sleep(400);
                         System.out.println("gas gigi 4");
                     }catch(Exception e){
@@ -87,10 +105,13 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         this.stop();                        
                     }
                 }
-                else if(motorCycle.getGear() == "5" && motorCycle.getRPM() < 10800 && motorCycle.getSpeed() <= 120){
+                else if(motorCycle.getGear() == "5" && motorCycle.getRPM() < maxRPM && motorCycle.getSpeed() <= 120){
                     try{
                         tmpSpeed = tmpSpeed + 1;
                         tmpRPM = tmpRPM + 150;
+                        
+                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        
                         Thread.sleep(400);
                         System.out.println("gas gigi 5");
                     }catch(Exception e){
@@ -138,7 +159,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                     }
                }
                else{
-                   if(tmpRPM <= 50 && tmpSpeed >= 0){                       
+                   if(tmpRPM <= 50 && tmpSpeed > 0){                       
                             tmpRPM = 50;
                        try{
                            Thread.sleep(500);
