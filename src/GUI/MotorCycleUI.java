@@ -8,7 +8,7 @@ package GUI;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * MotorCycle Simulator Program
  * @author bayurf
  */
 public class MotorCycleUI extends javax.swing.JFrame{
