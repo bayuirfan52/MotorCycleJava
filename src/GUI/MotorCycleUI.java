@@ -128,7 +128,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
            while(true){                
                if(tmpSpeed > 0 && tmpRPM > 50 && motorCycle.getGear() != "N"){
                    try{
-                        tmpSpeed = tmpSpeed - 1;
+                        tmpSpeed = tmpSpeed - 2;
                         tmpRPM = tmpRPM - 800;
                         if(tmpRPM <= 50)tmpRPM = 50;
                         
@@ -159,9 +159,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                            tmpSpeed--;
                            System.out.println("else release speed to 0");                           
                            motorCycle.setSpeed(tmpSpeed);
-                           motorCycle.setRPM(tmpRPM);
-                           SpeedLabel.setText(String.valueOf(motorCycle.getSpeed()));
-                           RPMLabel.setText(String.valueOf(motorCycle.getRPM()));                           
+                           motorCycle.setRPM(tmpRPM);                         
                        }catch(Exception e){
                            this.stop();
                        }
