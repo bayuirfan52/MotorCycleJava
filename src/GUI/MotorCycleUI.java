@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 /**
  * MotorCycle Simulator Program
  * @author bayurf
+ * See this project on GitHub
  */
 public class MotorCycleUI extends javax.swing.JFrame{
     /**
