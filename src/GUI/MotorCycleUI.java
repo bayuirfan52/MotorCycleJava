@@ -37,8 +37,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
             while(true){                
                 if(motorCycle.getGear() == "N" && motorCycle.getRPM() < maxRPM){
                     try {
-                        tmpRPM = tmpRPM + 650;
-                        
+                        tmpRPM = tmpRPM + 650;                        
                         if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
                         
                         Thread.sleep(50);
@@ -51,8 +50,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                 else if(motorCycle.getGear() == "1" && motorCycle.getRPM() < maxRPM && motorCycle.getSpeed() <= 25){
                     try{
                         tmpSpeed = tmpSpeed + 3;
-                        tmpRPM = tmpRPM + 750;
-                        
+                        tmpRPM = tmpRPM + 750;                        
                         if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
 
                         
@@ -66,8 +64,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                 else if(motorCycle.getGear() == "2" && motorCycle.getRPM() < maxRPM && motorCycle.getSpeed() <= 42){
                     try{
                         tmpSpeed = tmpSpeed + 2;
-                        tmpRPM = tmpRPM + 550;
-                        
+                        tmpRPM = tmpRPM + 550;                        
                         if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
                         
                         Thread.sleep(250);
@@ -80,8 +77,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                 else if(motorCycle.getGear() == "3" && motorCycle.getRPM() < maxRPM && motorCycle.getSpeed() <= 63){
                     try{
                         tmpSpeed = tmpSpeed + 1;
-                        tmpRPM = tmpRPM + 150;
-                        
+                        tmpRPM = tmpRPM + 150;                        
                         if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
                         
                         Thread.sleep(400);
@@ -95,7 +91,6 @@ public class MotorCycleUI extends javax.swing.JFrame{
                     try{
                         tmpSpeed = tmpSpeed + 1;
                         tmpRPM = tmpRPM + 150;
-                        
                         if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
                         
                         Thread.sleep(400);
@@ -108,8 +103,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                 else if(motorCycle.getGear() == "5" && motorCycle.getRPM() < maxRPM && motorCycle.getSpeed() <= 120){
                     try{
                         tmpSpeed = tmpSpeed + 1;
-                        tmpRPM = tmpRPM + 150;
-                        
+                        tmpRPM = tmpRPM + 150;                        
                         if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
                         
                         Thread.sleep(400);
@@ -135,9 +129,8 @@ public class MotorCycleUI extends javax.swing.JFrame{
                    try{
                         tmpSpeed = tmpSpeed - 1;
                         tmpRPM = tmpRPM - 800;
-                        if(tmpRPM <= 50){
-                            tmpRPM = 50;
-                        }
+                        if(tmpRPM <= 50)tmpRPM = 50;
+                        
                         Thread.sleep(500);
                         System.out.println("if release ke 1");
                     }catch(Exception e){
@@ -148,9 +141,8 @@ public class MotorCycleUI extends javax.swing.JFrame{
                else if(tmpRPM > 50 && motorCycle.getGear() == "N"){
                    try{
                         tmpRPM = tmpRPM - 800;
-                        if(tmpRPM <= 50){
-                            tmpRPM = 50;
-                        }
+                        if(tmpRPM <= 50)tmpRPM = 50;
+                        
                         Thread.sleep(50);
                         System.out.println("if release ke 2");
                     }catch(Exception e){
@@ -208,7 +200,9 @@ public class MotorCycleUI extends javax.swing.JFrame{
                 else if(tmpRPM <= 50 && tmpSpeed != 0){
                     tmpRPM = 50;
                     try{
-                        tmpSpeed = tmpSpeed - 4;
+                        tmpSpeed = tmpSpeed - 4;                        
+                        if(tmpSpeed < 0)tmpSpeed = 0;
+                        
                         Thread.sleep(200);
                         System.out.println("Brake Pressed Conditioning");
                     }catch(Exception e){
@@ -218,11 +212,12 @@ public class MotorCycleUI extends javax.swing.JFrame{
                 }
                 else{
                     try{
-                        tmpRPM = tmpRPM - 400;
-                        if(tmpRPM <= 50){
-                            tmpRPM = 50;
-                        }
-                        tmpSpeed = tmpSpeed - 4;
+                        tmpRPM = tmpRPM - 150;                        
+                        if(tmpRPM <= 50)tmpRPM = 50;
+                        
+                        tmpSpeed = tmpSpeed - 4;                        
+                        if(tmpSpeed < 0)tmpSpeed = 0;
+                        
                         Thread.sleep(200);
                         System.out.println("Brake Pressed Normalize");
                     }catch(Exception e){
