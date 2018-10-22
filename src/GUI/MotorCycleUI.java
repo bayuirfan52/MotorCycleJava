@@ -39,7 +39,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                     try {
                         tmpRPM = tmpRPM + 650;
                         
-                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
                         
                         Thread.sleep(50);
                         System.out.println("gas gigi N");
@@ -53,7 +53,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         tmpSpeed = tmpSpeed + 3;
                         tmpRPM = tmpRPM + 750;
                         
-                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
 
                         
                         Thread.sleep(250);
@@ -68,7 +68,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         tmpSpeed = tmpSpeed + 2;
                         tmpRPM = tmpRPM + 550;
                         
-                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
                         
                         Thread.sleep(250);
                         System.out.println("gas gigi 2");
@@ -82,7 +82,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         tmpSpeed = tmpSpeed + 1;
                         tmpRPM = tmpRPM + 150;
                         
-                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
                         
                         Thread.sleep(400);
                         System.out.println("gas gigi 3");
@@ -96,7 +96,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         tmpSpeed = tmpSpeed + 1;
                         tmpRPM = tmpRPM + 150;
                         
-                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
                         
                         Thread.sleep(400);
                         System.out.println("gas gigi 4");
@@ -110,7 +110,7 @@ public class MotorCycleUI extends javax.swing.JFrame{
                         tmpSpeed = tmpSpeed + 1;
                         tmpRPM = tmpRPM + 150;
                         
-                        if(tmpRPM >= maxRPM)tmpRPM = 10800;
+                        if(tmpRPM >= maxRPM)tmpRPM = maxRPM;
                         
                         Thread.sleep(400);
                         System.out.println("gas gigi 5");
